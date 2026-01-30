@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h1 align="center">DATOS DE ALUMNOS- CONTNUACIÓN</h1>
+        <table align="center" border="2" cellpadding="20">
+        <tr><td bgcolor="pink">
+        <form action="">
+            <font color="red" face="Times New Roman">
+            <h3 align="center">Teclea más datos.</h3>
+            </font>
+            <h4 align="left">Teclea fecha de nacimiento:</h4>
+            <font color="blue" face="Times New Roman">
+            <label for="username">Teclea fecha de nacimiento:</label>
+            <input type="text" id="username" name="username">
+
+            <label for="email">Selecciona mes de nacimiento:</label>
+            <select name="mes">
+                <option value="enero">enero</option>
+                <option value="febrero">febrero</option>
+                <option value="marzo">marzo</option>
+                <option value="abril">abril</option>
+                <option value="mayo">mayo</option>
+                <option value="junio">junio</option>
+                <option value="julio">julio</option>
+                <option value="agosto">agosto</option>
+                <option value="septiembre">septiembre</option>
+                <option value="octubre">octubre</option>
+                <option value="noviembre">noviembre</option>
+                <option value="diciembre">diciembre</option>
+            </select>
+            
+            <label for="userpassword">Teclea año de nacimiento:</label>
+            <input type="password" id="userpassword" name="userpassword">
+            
+            <br><br>
+            <label for="email">Selecciona el curso:</label>
+            <select name="mes">
+                <option value="enero">Primero SMR</option>
+                <option value="febrero">Segundo SMR</option>
+                <option value="marzo">Primero DAM</option>
+                <option value="abril">Segundo DAM</option>
+                <option value="mayo">Primero ASIR</option>
+                <option value="junio">Segundo ASIR</option>
+            </select>  
+            
+            <br>
+            <hr color="black" size="1">
+            <label>Elige 3 materias optativas:</label>
+            <input type="checkbox" id="ingles" name="usertype" value="ingles">
+            <label for="ingles">Inglés</label>
+            <input type="checkbox" id="france" name="usertype" value="france">
+            <label for="france">Francés</label>
+            <input type="checkbox" id="sport" name="usertype" value="sport">
+            <label for="sport">Deporte</label>
+            <input type="checkbox" id="astro" name="usertype" value="astro">
+            <label for="astro">Astronomía</label>
+            <input type="checkbox" id="historia" name="usertype" value="historia">
+            <label for="historia">Historia</label>
+            <input type="checkbox" id="web" name="usertype" value="web">
+            <label for="web">Páginas web</label>
+            <input type="checkbox" id="redes" name="usertype" value="redes">
+            <label for="redes">Redes</label>
+            <hr color="black" size="1">
+            <label>Selecciona el turno:</label>
+            <input type="radio" id="sports" name="interests" value="sports">
+            <label for="sports">Diurno</label>
+            <input type="radio" id="music" name="interests" value="music">
+            <label for="music">Nocturno</label>
+            <input type="radio" id="technology" name="interests" value="technology">
+            <label for="technology">Vespertino</label>
+            <br>
+            </font>
+            <hr color="black" size="1">
+            <center>
+            <button type="submit">Enviar datos</button>
+            <button type="reset">Limpiar datos</button>
+            <button type="submit">Ir al formulario anterior</button> 
+            <button onclick="window.close()">Cerrar</button>
+            </center>
+        </form>
+    </body>
+</html>
