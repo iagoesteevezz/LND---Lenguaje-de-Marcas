@@ -1,0 +1,22 @@
+<! DOCTYPE HTML>
+<html>
+<title>Aclopamientos de JavaScript</title>
+<!-- 1.Acoplamiento en el head-->
+
+<script type="text/Javascript">
+alert("Sript en la cabecera");
+</script>
+</head>
+<body>
+<!-- 2 Aclopamiento en el body -->
+<script type="text/Javascript">
+var almacen="textoAlmacenado";
+//3. Salida por la consola del navegaodr
+console. log(almacen);
+</script>
+<!-- 4.En una hoja externa -->
+<script src="funcion2.js"> </script>
+<!-- 5.Como atributo de una etiqueta html -->
+<button onclick="alert('hola')"> Ventana emergente </button>
+</body>
+</html>
