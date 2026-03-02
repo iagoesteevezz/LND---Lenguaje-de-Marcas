@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var persona = {
+            nombre : "Violeta",
+            apellidos : "González",
+            notas : [8,8,2,4],
+            hobby : "ir en moto",
+            edad : 18,
+            intereses : "ir a la universidad"
+        }
+        document.write(persona.nombre + " " + persona.apellidos + " quiere ir a la universidad<br>");
+        var suma = 0;
+        for (var i = 0; i < persona.notas.length; i++) {
+            suma += persona.notas[i];
+        }
+        var media = suma / persona.notas.length;
+        document.write("Tiene una nota media de " + media);
+    </script>
+</body>
+</html>

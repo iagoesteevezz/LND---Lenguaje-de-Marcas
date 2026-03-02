@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ejercicio para completar</title>
+</head>
+<body>
+<script>
+var amigos = ["Jorge", "Carmen", "Eva", "Lucia"];
+
+// 1 - Queremos que escriba "Mis amigos son Jorge y Carmen"
+document.write("Mis amigos son " + amigos[0] + " y " + amigos[1] + "<br>");
+// 2 - ¿Donde esta el fallo?
+// El fallo era que no había comas entre los elementos
+var enemigos = ["Scipion", "Scorpio", "Black"];
+// 3 - Escribe en el documento web:
+// "Scorpio es peor que Black"
+document.write(enemigos[1] + " es peor que " + enemigos[2] + "<br>");
+// Scorpio en negrita y la palabra peor en rojo
+document.write("<b>" + enemigos[1] + "</b> es <font color='red'>peor</font> que " + enemigos[2] + "<br>");
+// 4 - Longitud del array amigos
+document.write("La longitud del array amigos es: " + amigos.length + "<br>");
+// 5 - Añadir "Aitana" al final del array amigos
+amigos.push("Aitana");
+// 6 - Cambiar "Jorge" por "Nacho"
+amigos[0] = "Nacho";
+// 7 - Añadir "Thor" al final del array enemigos
+enemigos.push("Thor");
+</script>
+
+</body>
+</html>
