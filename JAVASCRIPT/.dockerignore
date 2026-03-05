@@ -1,0 +1,3 @@
+# ignore docs and other non-essential files
+*.odt
+*.pdf
