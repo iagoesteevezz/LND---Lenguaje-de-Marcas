@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ej36</title>
+</head>
+<body>
+    <script>
+        var uno = Number(prompt("Dame el primer sueldo"))
+        var dos = Number(prompt("Dame el segundo sueldo"))
+        var tres = Number(prompt("Dame el tercer sueldo"))
+        var cuatro = Number(prompt("Dame el cuarto sueldo"))
+        var cinco = Number(prompt("Dame el quinto sueldo"))
+        var cant= 0;
+        var sueldos = [uno,dos,tres,cuatro,cinco];
+        for(var i=0;i < sueldos.length;i++){
+            if(sueldos[i] > 1000)
+        {
+            cant++;
+        }
+        }
+        document.write(cant);
+    </script>
+</body>
+</html>

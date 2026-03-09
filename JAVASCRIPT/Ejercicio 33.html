@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ej33</title>
+</head>
+<body>
+    <script>
+        var pri = Number(prompt("Dame tu nota del primer trimestre"));
+        var seg = Number(prompt("Dame tu nota del segundo trimestre"));
+        var ter = Number(prompt("Dame tu nota del tercer trimestre"));
+        var media = (pri + seg+ ter)/3;
+        if (media>= 0 && media < 5)
+        {
+            document.write("Suspenso");
+        }
+        else if(media >= 5 && media < 6)
+        {
+            document.write("aprobado");
+        }
+        else if(media >= 6 && media < 7)
+        {
+            document.write("Bien");
+        }
+        else if(media >= 7 && media < 9)
+        {
+            document.write("Notable");
+        }
+        else if(media >= 9 && media <= 10)
+        {
+            document.write("Sobresaliente");
+        }
+        else
+        {
+             document.write("Nota incorrecta");
+        }
+    </script>
+</body>
+</html>
