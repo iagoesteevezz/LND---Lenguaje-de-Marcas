@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen</title>
+</head>
+<body>
+    <script>
+        //Ejercicio 1
+        var nombre = prompt("Dime tu nombre");
+        alert("Bienvenido " + nombre);
+        document.write("Bienvenido " + nombre+"<br>");
+        console.log("Bienvenido " + nombre);
+        //2
+        var asignaturas = ["lnd", "djk", "ets", "pro"];
+        var notas = [];
+
+        switch(nombre)
+        {
+            case "iago":
+                notas = [10,9,8,9];
+                document.write("Tu nombre es "+ nombre + ", tus asignaturas son " +asignaturas+ " y tus notas son "+ notas +"<br>");
+                break;
+            case "maria":
+                notas = [3,7,5,3];
+                document.write("Tu nombre es "+ nombre + ", tus asignaturas son " +asignaturas+ " y tus notas son "+ notas+"<br>");
+                break;
+            case "sara":
+                notas = [10,5,8,9];
+                document.write("Tu nombre es "+ nombre + ", tus asignaturas son " +asignaturas+ " y tus notas son "+ notas+"<br>");
+                break;
+            case "pedro":
+                notas = [10,9,6,9];
+                document.write("Tu nombre es "+ nombre + ", tus asignaturas son " +asignaturas+ " y tus notas son "+ notas+"<br>");
+                break;
+            case "javier":
+                notas = [3,1,8,7];
+                document.write("Tu nombre es "+ nombre + ", tus asignaturas son " +asignaturas+ " y tus notas son "+ notas+"<br>");
+                break;
+            default:
+                document.write("Alumno no encontrado");
+                break;
+        }
+
+        //3
+        switch(nombre)
+        {
+            case "iago":
+                for(var i = 0;i < notas.length;i++){
+                    document.write("Asignatura: " + asignaturas[i] + ": " + notas[i]+"<br>");
+                }
+                break;
+            case "maria":
+                for(var i = 0;i < notas.length;i++){
+                    document.write("Asignatura: " + asignaturas[i] + ": " + notas[i]+"<br>");
+                }
+                break;
+            case "sara":
+                for(var i = 0;i < notas.length;i++){
+                    document.write("Asignatura: " + asignaturas[i] + ": " + notas[i]+"<br>");
+                }
+                break;
+            case "pedro":
+                for(var i = 0;i < notas.length;i++){
+                    document.write("Asignatura: " + asignaturas[i] + ": " + notas[i]+"<br>");
+                }
+                break;
+            case "javier":
+                for(var i = 0;i < notas.length;i++){
+                    document.write("Asignatura: " + asignaturas[i] + ": " + notas[i]+"<br>");
+                }
+                break;
+            default:
+                document.write("Alumno no encontrado"+"<br>");
+                break;
+        }
+
+        //4
+        
+        var suma = 0;
+        var media = 0;
+
+        function calcularMedia(notas){
+            for(var i = 0;i < notas.length;i++){
+                    suma += notas[i];
+                }
+                media = suma/notas.length;
+            return media;
+        }
+        document.write("la media de tus notas es: "+ calcularMedia(notas)+"<br>");
+
+        //5
+        if (media == 10)
+        {
+            document.write("Matrícula de honor"+"<br>");
+        }
+        else if(media < 10 && media >= 9)
+        {
+            document.write("Sobresaliente"+"<br>");
+
+        }
+        else if(media < 9 && media >= 7)
+        {
+            document.write("Notable"+"<br>");
+
+        }
+        else if(media < 7 && media >= 5)
+        {
+            document.write("Aprobado"+"<br>");
+
+        }
+        else if(media < 5 && media >= 0)
+        {
+            document.write("Suspenso"+"<br>");
+
+        }
+        else{
+            document.write("Nota incorrecta"+"<br>");
+        }
+
+        //6
+        var aprobadas =0;
+        var suspensas =0;
+        for(var i =0;i<notas.length;i++)
+        {
+            if(notas[i]>=5)
+        {
+            aprobadas++;
+        }
+        else{
+            suspensas--;
+        }
+        }
+
+        document.write("Asignaturas Aprobadas: "+ aprobadas + ", y suspensas: "+ suspensas+"<br>");
+
+        //7
+        var num = (Math.random() * 26) + 1;
+        document.write(num +"<br>"); 
+
+        //8
+        document.write("El alumno "+nombre+ " cursa "+asignaturas.length+", tiene una media de "+media+" y su calificación final es "+media+"<br>");
+        document.write("El número aleatorio es "+num+"<br>");
+    </script>
+</body>
+</html>
