@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ej42</title>
+</head>
+<body>
+    <script>
+
+        var sumaPos = 0;
+        var sumaNeg = 0;
+        var cantCeros = 0;
+        var cantPos = 0;
+        var cantNeg = 0;
+
+        for (var i = 0; i < 10; i++)
+        {
+            num = Number(prompt("Dame un número"));
+            if(num == 0)
+            {
+                cantCeros++;
+            }
+            else if (num < 0)
+            {
+                cantNeg++;
+                sumaNeg+=num;
+            }
+            else
+            {
+                cantPos++;
+                sumaPos+=num;
+            }
+        }
+        var mediaPos = sumaPos/cantPos;
+        var mediaNeg = sumaNeg/cantNeg;
+        document.write("La media de los números positivos es: "+ mediaPos + "<br>");
+        document.write("La media de los números negativos es: "+ mediaNeg+"<br>");
+        document.write("la cantidad de ceros es: "+cantCeros);
+
+    </script>
+</body>
+</html>
