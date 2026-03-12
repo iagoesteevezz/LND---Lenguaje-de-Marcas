@@ -1,0 +1,36 @@
+.contenedor-principal {
+    /*este padding separa 16píxeles en vertical y 32 en horizontal */
+    padding: 16px 32px;
+}
+
+.btn-resplandor {
+    /*con esto cambiamos el color del fondo del botón */
+    background-color: #8b5cf6;
+    /*aquí hacemos que las esquinas del botón tengan un radio de 4px para hacerlo curvo */
+    border-radius: 4px;
+    /*esto lo que hace es quitarle el color del borde que por defecto es negro */
+    border: none;
+    /*este padding separa 8 píxeles en vertical y 18 en horizontal con respecto al botón */
+    padding: 8px 18px;
+    /*elegimos el tipo de letra Inter y si no funciona en un dispositivo sans-serif */
+    font-family: 'Inter', sans-serif;
+    /*le cambiamos el color de la fuente*/
+    color: #ffffff;
+    /* hacemos que el texto sea negrita*/
+    font-weight: bolder;
+    /* con esto alineamos todo el contenido al centro verticalmente para que la flecha no esté más arriba*/
+    align-items: center;
+    /*con esto activamos el flexbox para luego poder separar el texto de la flecha*/
+    display: flex;
+    /* separamos el texto de la flecha 10px*/
+    gap: 10px;
+}
+
+.btn-resplandor:hover {
+    /*hacdemos que el color del fondo del botón cambie cuando se haga el hover */
+    background-color: #7c51df;
+    /*hacemos que la duración de la transición del hover tarde 0,4 segundos */
+    transition-duration: 0.4s;
+    /*aquí elegimos la dirección de la sombra, 0 px a los lados, 5px hacia abajo y 10px de profundidad, además elegimos el color */
+    box-shadow: 0px 5px 10px rgba(139, 92, 246, 0.7);
+}
