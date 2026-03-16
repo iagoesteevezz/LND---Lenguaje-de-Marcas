@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title> Reloj que se repita </title>
+</head>
+<body>
+    <script>
+        function parar(){
+            clearInterval(fin);
+        }
+    function escribeHora(){
+        var fecha=new Date ();
+        var h=m=s=0;
+        h = fecha.getHours();   
+        m = fecha.getMinutes();
+        s = fecha.getSeconds();
+        if (h<10) { h = "0" + h;}
+        if (m<10) { m = "0" + m;}
+        if (s<10) { s = "0" + s; }
+        document.write ("Reloj " + h + ":" + m + ":" + s);
+    }
+    escribeHora ();
+    fin=setInterval (escribeHora,2000);
+    setTimeout (parar,10000);
+    </script>
+</body>
+</html>
