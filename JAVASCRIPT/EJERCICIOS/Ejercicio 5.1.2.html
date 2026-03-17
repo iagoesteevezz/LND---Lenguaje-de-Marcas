@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>casa 2</title>
+</head>
+<body>
+    <p id="resultado">Has pulsado: </p>
+    <script>
+        let resultado = document.getElementById("resultado");
+        document.addEventListener("keydown", function(event) {
+            resultado.textContent = "Has pulsado: " + event.key;
+        });
+    </script>
+</body>
+</html>

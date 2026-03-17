@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1</title>
+</head>
+<body>
+    <button id="boton">Clic</button>
+    <p>Has hecho clic <span id="resultado">0</span> veces</p>
+    <script>
+        var cont = 0;
+        let boton = document.getElementById("boton");
+        let resultado = document.getElementById("resultado");
+        boton.addEventListener("click",function() {
+            cont++;
+            resultado.textContent = cont;
+        });
+    </script>
+</body>
+</html>

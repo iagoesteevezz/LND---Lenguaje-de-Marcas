@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>casa 6</title>
+    <style>
+        #resultado{
+          position:absolute;  
+        }
+    </style>
+</head>
+<body>
+    <p id="resultado">Iago</p>
+    <script>
+        var cont = 0;
+        let resultado = document.getElementById("resultado");
+        document.addEventListener("mousemove", function(event) {
+            resultado.style.left = event.pageX + "px";
+            resultado.style.top = event.pageY + "px";
+        });
+     </script>
+</body>
+</html>

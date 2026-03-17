@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>casa 8</title>
+</head>
+<body>
+    <div id="mensaje">Mueve el ratón</div>
+    <script>
+        let mensaje = document.getElementById("mensaje");
+        let tesoroX = 100;
+        let tesoroY =200;
+        document.addEventListener("mousemove", function(evento) {
+            let ratonX = evento.clientX;
+            let ratonY = evento.clientY;
+            let diferenciaX = ratonX - tesoroX;
+            let diferenciaY = ratonY - tesoroY;
+            let distancia = Math.sqrt((diferenciaX * diferenciaX) + (diferenciaY * diferenciaY));
+            if (distancia < 50) {
+                mensaje.textContent = "¡Tesoro encontrado!";
+            }else if (distancia < 200) {
+                mensaje.textContent = "Caliente";
+            } else {
+                mensaje.textContent = "Frío";
+            }
+        });
+    </script>
+</body>
+</html>

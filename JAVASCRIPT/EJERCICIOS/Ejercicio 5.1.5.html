@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>casa 5</title>
+</head>
+<body>
+    <button id="boton">Click</button>
+    <p id="resultado">Iago Estévez Pérez</p>
+    <script>
+        var cont=true;
+        let boton = document.getElementById("boton");
+        let resultado = document.getElementById("resultado");
+        boton.addEventListener("click",function() {
+            if(cont==true){
+                resultado.style.display="none";
+                cont=false;
+            }else{
+                resultado.style.display="block";
+                cont=true;
+            }
+        });
+    </script>
+</body>
+</html>

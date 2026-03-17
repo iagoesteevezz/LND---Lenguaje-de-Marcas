@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>casa 7</title>
+</head>
+<body>
+    <div id="mensaje">Sigues ahí?</div>
+    <script>
+        let mensaje = document.getElementById("mensaje");
+        let temporizador;
+        function reiniciar() {
+            mensaje.style.display = "none";
+            clearTimeout(temporizador);
+            temporizador = setTimeout(function() {
+                mensaje.style.display = "block";
+            }, 5000); 
+        }
+        document.addEventListener("mousemove", reiniciar);
+        document.addEventListener("keydown", reiniciar);
+        document.addEventListener("click", reiniciar);
+        reiniciar();
+    </script>
+</body>
+</html>
