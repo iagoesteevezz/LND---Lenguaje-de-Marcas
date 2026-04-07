@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Actividad Dirigida - Gato y Ratón con Imágenes</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden; 
+            background-image: url('patio.jpeg');
+            background-size: cover;
+            height: 100vh;
+            cursor: none; 
+        }
+
+        #raton {
+            position: absolute;
+            width: 200px; 
+            left: 50%;
+            top: 50%;
+            user-select: none;
+            transition: all 0.1s; 
+        }
+
+        #gato {
+            position: absolute;
+            width: 80px; 
+            pointer-events: none; 
+            z-index: 10; 
+            user-select: none;
+        }
+
+        #mensaje-victoria {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 80px;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            display: none; 
+            text-shadow: 3px 3px 10px black;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="mensaje-victoria">¡MIAU!</div>
+    
+    <img id="raton" src="raton.webp" alt="raton">
+    <img id="gato" src="gato.png" alt="gato">
+
+    <script>
+        let raton = document.getElementById("raton");
+        let gato = document.getElementById("gato");
+        let mensajeVictoria = document.getElementById("mensaje-victoria");
+
+        document.addEventListener("mousemove", function(event) {
+            gato.style.left = (event.clientX - 40) + "px"; 
+            gato.style.top = (event.clientY - 40) + "px";
+        });
+
+        raton.addEventListener("mouseover", function() {
+            let nuevaX = Math.random() * (window.innerWidth - 80);
+            let nuevaY = Math.random() * (window.innerHeight - 80);
+            
+            raton.style.left = nuevaX + "px";
+            raton.style.top = nuevaY + "px";
+        });
+
+        raton.addEventListener("click", function() {
+            raton.src = "queso.webp"; 
+        });
+
+        raton.addEventListener("dblclick", function() {
+            raton.style.width = "30px"; 
+        });
+
+        document.addEventListener("keydown", function(event) {
+            if (event.key.toLowerCase() === "g") {
+                mensajeVictoria.style.display = "block"; 
+                
+                setTimeout(function() {
+                    mensajeVictoria.style.display = "none";
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>
