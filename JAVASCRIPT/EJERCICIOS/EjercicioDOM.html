@@ -1,34 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOM Iago</title>
+    <title>Ejemplo Práctico: Lista de Tareas</title>
 </head>
 <body>
-    <h1>LISTA DE TAREAS</h1>
-    <input type="text" id="texto">
-    <button id="boton">Botón</button>
-    <ul id="lista">
-        <li></li>
-    </ul>
-    
+
+    <h1>Mi Lista de Tareas</h1>
+    <input type="text" id="miInput" placeholder="Escribe una tarea">
+    <button id="miBoton">Añadir</button>
+    <ul id="miLista"></ul>
+
     <script>
-    let input = document.getElementById("texto");
-    let boton = document.getElementById("boton");
-    let lista = document.getElementById("lista");
+        const inputTarea = document.getElementById('miInput');
+        const botonAnadir = document.getElementById('miBoton');
+        const lista = document.getElementById('miLista');
 
-    boton.addEventListener("click", function() {
-      let texto = input.value;
-    });
+        botonAnadir.addEventListener('click', function() {
+            const texto = inputTarea.value;
 
-    let li = document.createElement("li");
+            if (texto !== "") { 
+                
+                const nuevaTarea = document.createElement('li');
 
-    li.textContent = texto;
+                nuevaTarea.textContent = texto;
 
-    lista.appendChild(li);
+                nuevaTarea.addEventListener('click', function() {
+                    nuevaTarea.classList.toggle('completada'); 
+                });
 
-    input.value = "";
+                nuevaTarea.addEventListener('dblclick', function() {
+                    nuevaTarea.remove();
+                });
+
+                lista.appendChild(nuevaTarea);
+
+                inputTarea.value = "";
+            }
+        });
     </script>
 </body>
 </html>
