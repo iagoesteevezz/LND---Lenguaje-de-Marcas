@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local 2 propuesto</title>
+</head>
+<body>
+    <h1>Lista de Películas</h1>
+    <input type="text" id="peli" placeholder="Escribe una película">
+    <button id="miBoton">Añadir</button>
+    <ul id="lista"></ul>
+
+    <script>
+        const pelicula = document.getElementById("peli");
+        const boton = document.getElementById("miBoton");
+        const lista = document.getElementById("lista");
+
+        const peliGuardada = localStorage.getItem("pelicula");
+
+        boton.addEventListener("click", function() {
+            const texto = pelicula.value;
+
+            if(texto != ""){
+                const nuevaPeli = document.createElement('li');
+                localStorage.setItem("texto", texto);
+                nuevaPeli.textContent = texto;
+
+                lista.appendChild(nuevaPeli);
+
+                pelicula.value = "";
+            }
+        });
+    </script>
+</body>
+</html>
