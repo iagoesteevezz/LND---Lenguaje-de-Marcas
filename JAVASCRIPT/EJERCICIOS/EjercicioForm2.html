@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio2</title>
+</head>
+<body>
+    <h1>Publicar producto de segunda mano</h1>
+    
+    <form id="formulario-producto">
+        
+        <label for="nombre">Nombre del producto: </label>
+        <input 
+            type="text" 
+            id="nombre" 
+            name="nombre" 
+            required pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" 
+            autocomplete="off">
+        <br><br>
+
+        <label for="email">E-mail de contacto: </label>
+        <input type="email" id="email" name="email" required autocomplete="off">
+        <br><br>
+
+        <label for="precio">Precio (€): </label>
+        <input type="number" id="precio" name="precio" required>
+        <br><br>
+
+        <label for="imagen">Imagen del producto: </label>
+        <input type="file" id="imagen" name="imagen" required>
+        <br><br>
+
+        <label>
+            <input type="checkbox" id="politicas" required autocomplete="off"> Acepto las políticas
+        </label>
+        <br><br>
+
+        <button type="submit">Publicar anuncio</button>
+    </form>
+
+    <script>
+        const formulario = document.querySelector('#formulario-producto');
+        const inputNombre = document.querySelector('#nombre');
+        const inputEmail = document.querySelector('#email');
+        const inputPrecio = document.querySelector('#precio');
+        const inputCheckbox = document.querySelector('#politicas');
+        const inputImagen = document.querySelector('#imagen');
+
+        inputNombre.addEventListener('input', () => {
+            inputNombre.setCustomValidity('');
+            inputNombre.checkValidity();
+        });
+        inputNombre.addEventListener('invalid', () => {
+            inputNombre.setCustomValidity('Solo se permiten letras y espacios para el nombre del producto');
+        });
+        inputNombre.addEventListener('blur', () => {
+            inputNombre.value = inputNombre.value.trim();
+        });
+
+        inputEmail.addEventListener('input', () => {
+            inputEmail.setCustomValidity('');
+            inputEmail.checkValidity();
+        });
+        inputEmail.addEventListener('invalid', () => {
+            inputEmail.setCustomValidity('Introduce un E-mail válido');
+        });
+
+        inputPrecio.addEventListener('input', () => {
+            inputPrecio.setCustomValidity('');
+            inputPrecio.checkValidity();
+        });
+        inputPrecio.addEventListener('invalid', () => {
+            inputPrecio.setCustomValidity('No es un número válido');
+        });
+
+        inputCheckbox.addEventListener('input', () => {
+            inputCheckbox.setCustomValidity('');
+            inputCheckbox.checkValidity();
+        });
+        inputCheckbox.addEventListener('invalid', () => {
+            inputCheckbox.setCustomValidity('Si no aceptas las políticas no puedes continuar.');
+        });
+
+        const oneMegaBytesInBytes = 10 ** 6;
+        const pesoLimite = oneMegaBytesInBytes * 5;
+        const extensionesPermitidas = ['jpg', 'jpeg', 'png'];
+
+        function validarImagen() {
+
+            inputImagen.setCustomValidity('');
+            
+            if(this.files.length === 0) return;
+
+            const { name: archivoNombre, size: archivoPeso } = this.files[0];
+            
+            const fileExtension = archivoNombre.split(".").pop().toLowerCase();
+
+            if (!extensionesPermitidas.includes(fileExtension)) {
+                inputImagen.setCustomValidity('Formato no válido');
+            }
+            
+            if (archivoPeso > pesoLimite) {
+                inputImagen.setCustomValidity('Demasiado grande. El archivo no debe superar los 5Mb.');
+            }
+        }
+        inputImagen.addEventListener("input", validarImagen);
+
+        formulario.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            alert('Producto publicado con éxito');
+        });
+    </script>
+</body>
+</html>
