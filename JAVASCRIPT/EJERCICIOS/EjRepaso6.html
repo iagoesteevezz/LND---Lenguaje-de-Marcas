@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ej 6</title>
+</head>
+<body>
+    <label>Escribe la combinación de teclas Ctrl+S:
+        <input type="text" id="comb">
+    </label>
+    <p id="mensaje"></p>
+
+    <script>
+        let comb = document.getElementById("comb");
+        let mensaje = document.getElementById("mensaje");
+
+        comb.addEventListener("keydown", function() { 
+            if (event.ctrlKey && (event.key == 's')) {
+                event.preventDefault(); 
+                mensaje.textContent = "Guardado rápido activado";
+            }
+        });
+    </script>
+</body>
+</html>

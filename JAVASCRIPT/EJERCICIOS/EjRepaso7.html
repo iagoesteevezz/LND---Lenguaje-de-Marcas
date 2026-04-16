@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ej 7</title>
+</head>
+<body>
+    <h1>Ejercicio 7</h1>
+    <p>Haz clic en cualquier lado e intenta salir de la página</p>
+
+    <script>
+        window.addEventListener("beforeunload", function(evento) {
+            evento.preventDefault();
+        });
+    </script>
+</body>
+</html>

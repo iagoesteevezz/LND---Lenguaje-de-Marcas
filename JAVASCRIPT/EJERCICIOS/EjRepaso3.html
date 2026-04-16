@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej 3</title>
+    <style>
+        #texto{
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <p id="texto">EJERCICIO 3</p>
+
+
+    <script>
+        let texto = document.getElementById("texto");
+
+        texto.addEventListener("mousedown", function(){
+            texto.style.fontSize = 30 + "px";
+        });
+
+        texto.addEventListener("mouseup", function(){
+            texto.style.fontSize = 24 + "px";
+        });
+    </script>
+</body>
+</html>

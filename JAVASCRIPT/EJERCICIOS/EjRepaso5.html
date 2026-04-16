@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ej5</title>
+</head>
+<body>
+    
+    <label>Escribe
+        <input id="texto">
+    </label>
+
+    <script>
+        texto = document.getElementById("texto");
+
+        texto.addEventListener("keypress", function(tecla){
+            if(tecla.key < '0' || tecla.key > '9'){
+                tecla.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>

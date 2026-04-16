@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej repaso 1</title>
+    <style>
+        #caja {
+            background-Color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id = "caja">
+    <p>Ejercicio1</p>
+    </div>
+    <script>
+        let caja = document.getElementById("caja");
+        let cont = 0;
+        caja.addEventListener("dblclick", function() {
+            if(cont == 0){
+                caja.style.backgroundColor = "green";
+                cont++;
+            }
+            else{
+                caja.style.backgroundColor = "red";
+                cont--;
+            }
+        });
+
+    </script>
+</body>
+</html>

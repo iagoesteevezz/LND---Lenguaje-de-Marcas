@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej 4</title>
+</head>
+<body>
+    <p id="estado"></p>
+    <br>
+    <label>Escribe algo:
+        <input type ="text" id="texto">
+    </label>
+
+    <script>
+        let estado = document.getElementById("estado");
+        let texto = document.getElementById("texto");
+
+        texto.addEventListener("keydown", function(){
+            estado.textContent = "Escribiendo...";
+        });
+    </script>
+</body>
+</html>

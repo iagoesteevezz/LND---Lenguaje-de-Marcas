@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej 2</title>
+    <style>
+        #caja {
+            background-Color: lightblue;
+        }
+        #cords {
+                position: absolute;
+            }
+    </style>
+</head>
+<body>
+    <div id = "caja">
+        <h1>EJERCICIO 2</h1>
+        <br>
+        <P id ="cords">AQUÍ</P>
+    </div>
+
+
+    <script>
+        let caja = document.getElementById("caja");
+        let cords = document.getElementById("cords");
+
+        caja.addEventListener("mouseover", function() {
+            cords.textContent = event.clientX + " x "+ event.clientY;
+        });
+    </script>
+</body>
+</html>

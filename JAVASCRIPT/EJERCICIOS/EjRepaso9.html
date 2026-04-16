@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ej 9</title>
+</head>
+<body>
+    <label>Escribe más de 5 caracteres
+    <input type = "text" id = "texto">
+    </label>
+    <p id = "mensaje"></p>
+
+    <script>
+        texto = document.getElementById("texto");
+        mensaje = document.getElementById("mensaje");
+        texto.addEventListener("blur", function(){
+            if(texto.value.length < 5){
+                mensaje.textContent = "Introduce más de 5 caracteres por favor";
+            }
+            else{
+                mensaje.textContent = "Genial!";
+            }
+        });
+    </script>
+</body>
+</html>

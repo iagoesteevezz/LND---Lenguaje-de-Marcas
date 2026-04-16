@@ -9,7 +9,7 @@
     <p id="resultado">Has pulsado: </p>
     <script>
         let resultado = document.getElementById("resultado");
-        document.addEventListener("keydown", function(event) {
+        document.addEventListener("keydown", function() {
             resultado.textContent = "Has pulsado: " + event.key;
         });
     </script>
