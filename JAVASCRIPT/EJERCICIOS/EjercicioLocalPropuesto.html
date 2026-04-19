@@ -6,31 +6,61 @@
     <title>Local 2 propuesto</title>
 </head>
 <body>
-    <h1>Lista de Películas</h1>
-    <input type="text" id="peli" placeholder="Escribe una película">
-    <button id="miBoton">Añadir</button>
-    <ul id="lista"></ul>
+    <h1>Registro de películas</h1>
+    
+    <input type="text" id="pelicula" placeholder="Escribe una película">
+    <button id="guardar">Guardar</button>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Película</th>
+            </tr>
+        </thead>
+    <tbody id="tablaPeliculas"></tbody>
+    </table>
+
 
     <script>
-        const pelicula = document.getElementById("peli");
-        const boton = document.getElementById("miBoton");
-        const lista = document.getElementById("lista");
 
-        const peliGuardada = localStorage.getItem("pelicula");
+    const input = document.getElementById("pelicula");
+    const boton = document.getElementById("guardar");
+    const tabla = document.getElementById("tablaPeliculas"); 
 
-        boton.addEventListener("click", function() {
-            const texto = pelicula.value;
+    let peliculas = JSON.parse(localStorage.getItem("peliculas")) || [];
 
-            if(texto != ""){
-                const nuevaPeli = document.createElement('li');
-                localStorage.setItem("texto", texto);
-                nuevaPeli.textContent = texto;
 
-                lista.appendChild(nuevaPeli);
+    function pintarTabla() {
+    tabla.innerHTML = "";
+    peliculas.forEach((pelicula, indice) => {
+    const fila = document.createElement("tr");
+    const celdaNumero = document.createElement("td");
+    celdaNumero.textContent = indice + 1; // +1 porque empieza en 0
+    const celdaPelicula = document.createElement("td");
+    celdaPelicula.textContent = pelicula;
+    fila.appendChild(celdaNumero);
+    fila.appendChild(celdaPelicula);
+    tabla.appendChild(fila);
+    });
+    }
 
-                pelicula.value = "";
-            }
-        });
+
+    boton.addEventListener("click", () => {
+    const nombrePelicula = input.value.trim();
+    if (nombrePelicula === "") {
+    alert("Escribe una película");
+    return;
+    }
+    
+    peliculas.push(nombrePelicula);
+    localStorage.setItem("peliculas", JSON.stringify(peliculas));
+    pintarTabla();
+    input.value = "";
+    });
+    pintarTabla();
+
     </script>
+
 </body>
 </html>
