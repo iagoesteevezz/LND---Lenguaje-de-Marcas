@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej 11</title>
+
+</head>
+<body>
+    <form id="form">
+        Nombre: <input type="text" id="nombre"> <br><br>
+        Curso: <input type="text" id="curso"> <br><br>
+        Nota: <input type="number" id="nota"><br><br>
+       <input type="submit">
+    </form> 
+
+    <table id="tabla">
+        <tr>
+            <th>Nombre</th>
+            <th>Curso</th>
+            <th>Nota</th>
+        </tr>
+    </table>
+
+    <script>
+        formulario = document.getElementById("form");
+        nombre = document.getElementById("nombre");
+        nota = document.getElementById("nota");
+        tabla = document.getElementById("tabla");
+        curso = document.getElementById("curso");
+
+        formulario.addEventListener("submit", function(evento){
+            evento.preventDefault();
+            if(nombre.value.length < 3 || nota.value < 0 || nota.value >10){
+                alert("Error en los datos");
+            }
+            let fila = document.createElement("tr");
+            let celdaNombre = document.createElement("td");
+            let celdaCurso = document.createElement("td");
+            let celdaNota = document.createElement("td");
+
+            celdaNombre.textContent = nombre.value;
+            celdaCurso.textContent = curso.value;
+            celdaNota.textContent = nota.value;
+
+            if(nota.value>=5){
+                fila.style.color="green";
+            }
+            else{
+                fila.style.color="red";
+            }
+
+            fila.appendChild(celdaNombre);
+            fila.appendChild(celdaCurso);
+            fila.appendChild(celdaNota);
+
+            tabla.appendChild(fila);
+
+            nombre.value = "";
+            curso.value = "";
+            nota.value = "";
+
+            
+        });
+    </script>
+</body>
+</html>

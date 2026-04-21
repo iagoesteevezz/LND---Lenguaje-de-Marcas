@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej 10</title>
+</head>
+<body>
+    <p id ="resultado"></p>
+    <form id ="form">
+        Email:<input type="email" id="email">
+        <br><br>
+        Nombre: <input type="text" id="nombre"><br><br>  
+        <input type="submit" value="Enviar" id="envio">
+    </form>
+
+    <script>
+
+        let formulario = document.getElementById("form");
+        let email = document.getElementById("email");
+        let nombre = document.getElementById("nombre");
+        let envio = document.getElementById("envio");
+
+        form.addEventListener("submit", function(evento){
+            evento.preventDefault();
+            if(email.value =="" || nombre.value == ""){
+                resultado.textContent="Rellena el formulario por favor";
+                
+            }
+            else{
+                resultado.textContent="Datos guardados";
+            }
+        });
+    </script>
+</body>
+</html>
