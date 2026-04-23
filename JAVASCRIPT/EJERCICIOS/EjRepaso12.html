@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej 12</title>
+</head>
+<body>
+    <form id="formu">
+        Producto: <input type="text" id="producto"><br><br>
+        Cantidad: <input type="number" id="cantidad">
+        <input type="submit" value="enviar">
+    </form>
+
+    <ul id="lista">
+    </ul>
+
+    <script>
+        const product = document.getElementById("producto");
+        const cant = document.getElementById("cantidad");
+        const lista = document.getElementById("lista");
+        const formu = document.getElementById("formu");
+
+        formu.addEventListener("submit", function(evento){
+            evento.preventDefault();
+            if(product.value.length ==0 || cant.value <=0){
+                alert("Error en los datos");
+            }
+            else{
+                let fila = document.createElement("li");
+                fila.textContent = product.value + ": "+ cant.value;
+                lista.appendChild(fila);
+                product.value = "";
+                cant.value ="";
+            }
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej 13</title>
+</head>
+<body>
+    <form id="formu">
+        Email: <input type="email" id="email"><br><br>
+        usuario: <input type="text" id="usu">
+        <input type="submit" value="envio">
+    </form>
+    <ul id="lista">
+
+    </ul>
+    <script>
+        let cont = 0;
+        let emailsArray = [];
+        const email = document.getElementById("email");
+        const usuario = document.getElementById("usu");
+        const formu = document.getElementById("formu");
+        const lista = document.getElementById("lista");
+
+        formu.addEventListener("submit", function(evento){
+            evento.preventDefault();
+            let existe = false;
+            
+            for(let i = 0; i < cont; i++){
+                if(emailsArray[i].toLowerCase() === email.value.toLowerCase()){
+                    existe = true;
+                    break;
+                }
+            }
+            
+            if(existe){
+                alert("Email ya existente");
+            } 
+            else if(usuario.value.length < 4){
+                alert("Usuario demasiado corto");
+            }
+            else{
+                emailsArray[cont] = email.value;
+                cont++;
+                
+                let listado = document.createElement("li");
+                listado.textContent = usuario.value + ": " + email.value;
+                lista.appendChild(listado);
+                
+                email.value = "";
+                usuario.value = "";
+            } 
+        });
+    </script>
+</body>
+</html>
