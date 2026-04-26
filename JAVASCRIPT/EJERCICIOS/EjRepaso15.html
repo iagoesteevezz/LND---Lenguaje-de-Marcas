@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej 15</title>
+</head>
+<body>
+    <form id="formu">
+        Tarea: <input id=tarea type="text"><br>
+        <p>Prioridad:</p>
+        Baja<input type="radio" id="prio-baja" name="prioridades">
+        Media<input type="radio" id="prio-mid" name="prioridades">
+        Alta<input type="radio" id="prio-alta" name="prioridades"><br><br>
+        <input type="submit">
+    </form>
+
+
+    <p id="cantidad"></p>
+    <ul id="lista">
+    </ul>
+
+    <script>
+        const tarea = document.getElementById("tarea");
+        const baja =  document.getElementById("prio-baja");
+        const mid =  document.getElementById("prio-mid");
+        const alta =  document.getElementById("prio-alta");
+        const formu= document.getElementById("formu");
+        const lista= document.getElementById("lista");
+        const cantidad= document.getElementById("cantidad");
+
+        let datos = JSON.parse(localStorage.getItem("clases")) || [];
+
+        function mostrarLista(){
+            lista.innerHTML=""; 
+            for(let i =0;i<datos.length;i++){
+            
+                let listado = document.createElement("li");
+                listado.textContent=datos[i].tarea + " : "+ datos[i].prioridad;
+
+                lista.appendChild(listado);
+                
+                if (datos[i].prioridad =="Baja") {
+                listado.style.color="green";
+                } else if (datos[i].prioridad =="Media") {
+                listado.style.color="yellow";
+                } else if (datos[i].prioridad =="Alta") {
+                listado.style.color="red";
+                }
+                cantidad.textContent= "Cantidad de participantes: "+ datos.length;
+            }
+        }
+
+        mostrarLista();
+
+        formu.addEventListener("submit",function(evento){
+            evento.preventDefault();
+            if(tarea.value.length <= 3){
+                alert("La tarea tiene que ser mínimo de 3 caracteres");
+                return;
+            }
+            let nivelPrioridad="";
+            if (baja.checked) {
+                nivelPrioridad = "Baja";
+            } else if (mid.checked) {
+                nivelPrioridad = "Media";
+            } else if (alta.checked) {
+                nivelPrioridad = "Alta";
+            }
+
+            let nuevoObjeto = {
+                tarea: tarea.value,
+                prioridad: nivelPrioridad
+            };
+
+            datos.push(nuevoObjeto);
+            localStorage.setItem("clases", JSON.stringify(datos));
+
+            mostrarLista();
+
+            tarea.value="";
+        });
+
+    </script>
+</body>
+</html>

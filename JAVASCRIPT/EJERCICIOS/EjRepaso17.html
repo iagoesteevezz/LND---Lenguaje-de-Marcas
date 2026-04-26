@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej 17</title>
+</head>
+<body>
+    <h1>Letterboxd</h1>
+    <form id="formu">
+        Título<input type="text" id="titulo"><br><br>
+        Año: <input type="number" id="ano" min="1900"><br><br>
+        Nota: <input type="number" id="nota" min="1" max="10"><br><br>
+        <input type="submit">
+    </form>
+
+    <table id="tabla">
+        <tr>
+            <th>Título</th>
+            <th>Año</th>
+            <th>Nota</th>
+        </tr>
+    </table>
+
+    <p id="media"></p>
+
+
+    <script>
+        const formu = document.getElementById("formu");
+        const ano = document.getElementById("ano");
+        const nota = document.getElementById("nota");
+        const tabla = document.getElementById("tabla");
+        const titulo = document.getElementById("titulo");
+        const media = document.getElementById("media");
+
+        let datos = JSON.parse(localStorage.getItem("peliculas2")) || [];
+
+        function mostrarTabla(){
+            tabla.innerHTML = `<tr>
+                <th>Título</th>
+                <th>Año</th>
+                <th>Nota</th>
+            </tr>`;
+
+            let cont = 0;
+
+            for(let i=0;i<datos.length;i++){
+                let fila = document.createElement("tr");
+                let cTitu = document.createElement("td");
+                let cAno = document.createElement("td");
+                let cNota = document.createElement("td");
+
+                cTitu.textContent = datos[i].titulo;
+                cAno.textContent = datos[i].ano;
+                cNota.textContent = datos[i].nota;
+                
+                fila.appendChild(cTitu);
+                fila.appendChild(cAno);
+                fila.appendChild(cNota);
+                
+                tabla.appendChild(fila);
+
+                cont += datos[i].nota;
+            }
+            if (datos.length > 0) {
+                let res = cont / datos.length;
+                media.textContent = "Media: " + res.toFixed(2);
+            } else {
+                media.textContent = ""; 
+            }
+        }
+
+        mostrarTabla();
+
+        formu.addEventListener("submit", function(evento){
+            evento.preventDefault();
+
+            let nuevoObjeto = {titulo: titulo.value, ano : ano.value, nota: Number(nota.value)};
+            
+            datos.push(nuevoObjeto);
+
+            localStorage.setItem("peliculas2", JSON.stringify(datos));
+            mostrarTabla();
+
+            titulo.value="";
+            ano.value="";
+            nota.value="";
+        });
+        
+    </script>
+</body>
+</html>

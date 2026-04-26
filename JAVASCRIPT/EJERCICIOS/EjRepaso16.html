@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej 16</title>
+</head>
+<body>
+    <form id="formu">
+        Nombre<input type="text" id="nom"><br><br>
+        Edad: <input type="number" id="edad"><br><br>
+        Opinión: <input type="text" id="op"><br><br>
+        <input type="submit">   
+    </form>
+
+    <table id="tabla">
+        <tr>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Opinión</th>
+        </tr>
+    </table>
+
+    <p id="cantidad"></p>
+
+    <script>
+        const formu = document.getElementById("formu");
+        const nom = document.getElementById("nom");
+        const edad = document.getElementById("edad");
+        const opinion = document.getElementById("op");
+        const tabla = document.getElementById("tabla");
+        const cantidad = document.getElementById("cantidad");
+
+        let datos = JSON.parse(localStorage.getItem("encuesta")) || [];
+
+        function mostrarTabla(){
+            tabla.innerHTML= `
+            <tr>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Opinión</th>
+            </tr>`;
+
+            for(let i=0;i<datos.length;i++){
+                let fila = document.createElement("tr");
+                let cNombre = document.createElement("td");
+                let cEdad = document.createElement("td");
+                let cOpinion = document.createElement("td");
+
+                cNombre.textContent = datos[i].nom;
+                cEdad.textContent = datos[i].edad;
+                cOpinion.textContent = datos[i].opinion;
+
+                fila.appendChild(cNombre);
+                fila.appendChild(cEdad);
+                fila.appendChild(cOpinion);
+
+                tabla.appendChild(fila);
+
+                cantidad.textContent= "Cantidad de personas: " + datos.length;
+                
+            }
+        }
+
+        mostrarTabla();
+        formu.addEventListener("submit", function(evento){
+            evento.preventDefault();
+            if(opinion.value.length <= 9){
+                alert("la opinión tiene que ser mínimo de 10 caracteres");
+                return;
+            }
+            let nuevoObjeto = {nom: nom.value, edad : edad.value, opinion: opinion.value};
+            datos.push(nuevoObjeto);
+            localStorage.setItem("encuesta", JSON.stringify(datos));
+            mostrarTabla();
+            nom.value = ""; 
+            edad.value = ""; 
+            opinion.value = ""; 
+        });        
+    </script>
+</body>
+</html>
