@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej respaso grafica 3</title>
+</head>
+<body>
+    <h1>Registro de Pesos</h1>
+    <form id="formu">
+        Fecha: <input type="date" id="fecha"><br><br>
+        Peso: <input type="number" id="peso" step="0.1"><br><br>
+        <input type="submit">
+    </form>
+
+    <canvas id="migrafica"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const formu = document.getElementById("formu");
+        const fecha = document.getElementById("fecha");
+        const peso = document.getElementById("peso");
+        const migrafica = document.getElementById("migrafica");
+
+        let datos = JSON.parse(localStorage.getItem("registros")) || [];
+
+        const lienzo = new Chart(migrafica, {
+            type:"line",
+            data:{
+                labels: datos.map(item => item.fecha),
+                datasets:[{
+                    label:"Registro de Pesos",
+                    data: datos.map(item => item.peso),
+                    borderWidth:2
+                }]
+            },
+            options:{responsive:true}
+        });
+
+        formu.addEventListener("submit", function(evento){
+            evento.preventDefault();
+            let nuevoObjeto = {fecha: fecha.value, peso: Number(peso.value)};
+            datos.push(nuevoObjeto);
+            localStorage.setItem("registros", JSON.stringify(datos));
+            lienzo.data.labels.push(fecha.value);
+            lienzo.data.datasets[0].data.push(nuevoObjeto.peso);
+            lienzo.update();
+
+            peso.value="";
+            fecha.value="";
+        });
+    </script>
+</body>
+</html>

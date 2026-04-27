@@ -21,7 +21,6 @@
         const grafica = document.getElementById("grafica");
 
         let datos = JSON.parse(localStorage.getItem("hevy1")) || [];
-        let michart;
 
         const lienzo = new Chart(grafica, {
             type:"bar",

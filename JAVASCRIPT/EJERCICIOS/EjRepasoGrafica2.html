@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej repaso2</title>
+</head>
+<body>
+    <h1>Control de Gastos</h1>
+    <form id="formu">
+        Concepto: <input type="text" id="concepto"><br><br>
+        Cantidad: <input type="number" id="cant"><br><br>
+        <input type="submit">
+    </form>
+    <canvas id="migrafica"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const formu = document.getElementById("formu");
+        const concepto = document.getElementById("concepto");
+        const cant = document.getElementById("cant");
+        const migrafica = document.getElementById("migrafica");
+
+        let datos = JSON.parse(localStorage.getItem("banco")) || [];
+        
+        const lienzo = new Chart(migrafica, {
+            type: "pie",
+            data:{
+                labels: datos.map(item => item.concepto),
+                datasets: [{
+                    label:"Gastos",
+                    data: datos.map(item => item.cant),
+                    borderWidth:2
+                }]
+            },
+            options: {responsive:true}
+        })
+
+        formu.addEventListener("submit", function(evento){
+            evento.preventDefault();
+            let nuevoObjeto = {concepto: concepto.value, cant: Number(cant.value)};
+            datos.push(nuevoObjeto);
+            localStorage.setItem("banco", JSON.stringify(datos));
+            lienzo.data.labels.push(concepto.value);
+            lienzo.data.datasets[0].data.push(nuevoObjeto.cant);
+            lienzo.update();
+            cant.value="";
+            concepto.value="";
+        });
+    </script>
+</body>
+</html>
