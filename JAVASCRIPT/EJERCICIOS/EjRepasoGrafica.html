@@ -20,42 +20,33 @@
         const dias = document.getElementById("dias");
         const grafica = document.getElementById("grafica");
 
-        let datos = JSON.parse(localStorage.getItem("hevy")) || [];
+        let datos = JSON.parse(localStorage.getItem("hevy1")) || [];
         let michart;
 
-        function actualizarGrafica(){
-            let arrayEtiqueta = [];
-            let arrayHoras = [];
-
-            for(let i=0;i<datos.length;i++){
-                arrayEtiqueta.push(datos[i].dias);
-                arrayHoras.push(datos[i].horas);
-            }
-
-            if(michart){
-                michart.destroy();
-            }
-            michart = new Chart(grafica, {
-            type: "line",
+        const lienzo = new Chart(grafica, {
+            type:"bar",
             data: {
-                labels: arrayEtiqueta,
+                labels: datos.map(item => item.dias),
                 datasets: [{
-                    label: "Horas",
-                    data: arrayHoras,
-                    borderWidth: 2
+                    label:"Horas",
+                    data: datos.map(item => item.horas),
+                    borderWidth:2,
+                    borderColor:"blue"
                 }]
-            }
-        })
-        }
-
-        actualizarGrafica();
+            }, 
+            options:{
+                responsive:true}
+        });
 
         formu.addEventListener("submit", function(evento){
             evento.preventDefault();
             let nuevoObjeto = {horas: Number(horas.value), dias: dias.value};
             datos.push(nuevoObjeto);
-            localStorage.setItem("hevy", JSON.stringify(datos));
-            actualizarGrafica();
+            localStorage.setItem("hevy1", JSON.stringify(datos));
+            lienzo.data.labels.push(dias.value);
+            lienzo.data.datasets[0].data.push(horas.value);
+            
+            lienzo.updates();
 
             horas.value="";
             dias.value="";
