@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej repaso gráfica</title>
+</head>
+<body>
+    <h1>Mi semana</h1>
+    <form id="formu">
+        Día: <input type="text" id="dias"><br><br>
+        Horas: <input type="number" id="horas"><br><br>
+        <input type="submit">
+    </form> 
+    <canvas id="grafica"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const formu = document.getElementById("formu");
+        const horas = document.getElementById("horas");
+        const dias = document.getElementById("dias");
+        const grafica = document.getElementById("grafica");
+
+        let datos = JSON.parse(localStorage.getItem("hevy")) || [];
+        let michart;
+
+        function actualizarGrafica(){
+            let arrayEtiqueta = [];
+            let arrayHoras = [];
+
+            for(let i=0;i<datos.length;i++){
+                arrayEtiqueta.push(datos[i].dias);
+                arrayHoras.push(datos[i].horas);
+            }
+
+            if(michart){
+                michart.destroy();
+            }
+            michart = new Chart(grafica, {
+            type: "line",
+            data: {
+                labels: arrayEtiqueta,
+                datasets: [{
+                    label: "Horas",
+                    data: arrayHoras,
+                    borderWidth: 2
+                }]
+            }
+        })
+        }
+
+        actualizarGrafica();
+
+        formu.addEventListener("submit", function(evento){
+            evento.preventDefault();
+            let nuevoObjeto = {horas: Number(horas.value), dias: dias.value};
+            datos.push(nuevoObjeto);
+            localStorage.setItem("hevy", JSON.stringify(datos));
+            actualizarGrafica();
+
+            horas.value="";
+            dias.value="";
+        });
+        
+    </script>
+</body>
+</html>
