@@ -29,11 +29,8 @@
 
         let datos = JSON.parse(localStorage.getItem("asistencia")) || [];
 
-        function mostrarTabla(){
-            tabla.innerHTML = `<tr>
-                <th>Nombre</th>
-                <th>Día</th>
-            </tr>`
+        function mostrarTabla(){    
+            tabla.innerHTML = "";
 
             for(let i=0;i<datos.length;i++){
                 let fila = document.createElement("tr");
