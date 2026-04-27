@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej 19</title>
+</head>
+<body>
+    <h1>Registro de Asistencia</h1>
+
+    <form id="formu">
+        Nombre: <input type="text" id="nombre" required><br><br>
+        Día: <input type="date" id="dia"><br><br>
+        <input type="submit">
+    </form>
+
+    <table id="tabla">
+        <tr>
+            <th>Nombre</th>
+            <th>Día</th>
+        </tr>
+    </table>
+
+    <script>
+        const formu = document.getElementById("formu");
+        const nombre = document.getElementById("nombre");
+        const dia = document.getElementById("dia");
+        const tabla = document.getElementById("tabla");
+
+        let datos = JSON.parse(localStorage.getItem("asistencia")) || [];
+
+        function mostrarTabla(){
+            tabla.innerHTML = `<tr>
+                <th>Nombre</th>
+                <th>Día</th>
+            </tr>`
+
+            for(let i=0;i<datos.length;i++){
+                let fila = document.createElement("tr");
+                let cNombre = document.createElement("td");
+                let cDia = document.createElement("td");
+
+                cNombre.textContent=datos[i].nombre;
+                cDia.textContent=datos[i].dia;
+                fila.appendChild(cNombre);
+                fila.appendChild(cDia);
+
+                tabla.appendChild(fila);
+            }
+        }
+
+        mostrarTabla();
+
+        formu.addEventListener("submit", function(evento){
+            evento.preventDefault();
+
+            let nuevoObjeto = {nombre: nombre.value, dia: dia.value};
+
+            datos.push(nuevoObjeto);
+            localStorage.setItem("asistencia", JSON.stringify(datos));
+            mostrarTabla();
+            nombre.value="";
+            dia.value="";
+        });
+
+    </script>
+</body>
+</html>

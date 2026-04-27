@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej 18</title>
+</head>
+<body>
+    <h1>Agencia de contactos</h1>
+
+    <form id="formu">
+        Nombre:<input type="text" id="nombre"><br><br>
+        Teléfono: <input type="text" id="tel" minlength="9" maxlength="9"><br><br>
+        <input type="submit">
+    </form>
+
+    <ul id="lista"></ul>
+
+    <script>
+        const formu = document.getElementById("formu");
+        const nombre = document.getElementById("nombre");
+        const tel = document.getElementById("tel");
+        const lista = document.getElementById("lista");
+
+        let datos = JSON.parse(localStorage.getItem("agenda")) || [];
+
+        function mostrarLista(){
+            lista.innerHTML ="";
+            for(let i=0;i<datos.length;i++){
+                let listado = document.createElement("li");
+                listado.textContent = datos[i].nombre + " : "+ datos[i].tel;
+                lista.appendChild(listado);
+            }
+        }
+        mostrarLista();
+
+        formu.addEventListener("submit", function(evento){
+            evento.preventDefault();
+            let nuevoObjeto = {nombre: nombre.value, tel: tel.value};
+            datos.push(nuevoObjeto);
+
+            localStorage.setItem("agenda", JSON.stringify(datos));
+            mostrarLista();
+
+            nombre.value=""; 
+            tel.value="";
+        });
+    </script>
+</body>
+</html>
