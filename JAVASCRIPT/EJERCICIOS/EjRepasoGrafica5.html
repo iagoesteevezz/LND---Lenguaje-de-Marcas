@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio 24</title>
+</head>
+<body>
+    <h1>Registro de pasos</h1>
+    <form id="formu">
+    Día: <input id="dia" type="text"><br><br>
+    Pasos: <input id="pasos" type="number"><br><br>
+    <input type="submit">
+    </form>
+
+   <canvas id="migrafica"></canvas>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+   <script>
+        const formu = document.getElementById("formu");
+        const pasos = document.getElementById("pasos");
+        const dia = document.getElementById("dia");
+        const migrafica = document.getElementById("migrafica");
+
+        let datos = JSON.parse(localStorage.getItem("registroPasos")) || [];
+
+        const lienzo = new Chart(migrafica, {
+            type:"bar",
+            data:{
+                labels: datos.map(item => item.dia),
+                datasets:[{
+                    label:"Registro de Pasos",
+                    data: datos.map(item => item.pasos),
+                    backgroundColor: ["red","blue", "pink"],
+                    borderWidth:2
+                }]
+            }
+        })
+
+        formu.addEventListener("submit", function(evento){
+            evento.preventDefault();
+            let nuevoObjeto={dia: dia.value, pasos: Number(pasos.value)};
+            datos.push(nuevoObjeto);
+            localStorage.setItem("registroPasos", JSON.stringify(datos));
+            lienzo.data.labels.push(dia.value);
+            lienzo.data.datasets[0].data.push(nuevoObjeto.pasos);
+            lienzo.update();
+            dia.value="";
+            pasos.value="";
+        })
+   </script>
+</body>
+</html>
