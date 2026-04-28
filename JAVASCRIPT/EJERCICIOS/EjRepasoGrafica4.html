@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej repaso grafica 23</title>
+</head>
+<body>
+    <h1>Game Awards</h1>
+    <form id="formu">
+        Juego: <input type="text" id="juego" required><br><br>
+        <input type="submit">
+    </form>
+    <canvas id="migrafica"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const formu = document.getElementById("formu");
+        const juego = document.getElementById("juego");
+        const migrafica = document.getElementById("migrafica");
+        
+        let datos = JSON.parse(localStorage.getItem("gameawards")) || [];
+
+        const lienzo = new Chart(migrafica, {
+            type:"bar",
+            data: {
+                labels: datos.map(item => item.juego),
+                datasets: [{
+                    label:"Game Awards",
+                    data: datos.map(item => item.votos),
+                    backgroundColor:["blue","red","pink"]
+                }]
+            }
+        })
+
+        formu.addEventListener("submit", function(evento){
+            evento.preventDefault();
+            let existe = false;
+            for(let i=0;i<datos.length;i++){
+                if(datos[i].juego == juego.value){
+                    datos[i].votos++;
+                    existe = true;
+                    break;
+                }
+            }  
+            if(existe== false){
+                let nuevoObjeto = {juego: juego.value, votos:1}
+                datos.push(nuevoObjeto);
+            }
+            
+            localStorage.setItem("gameawards",JSON.stringify(datos));
+            lienzo.data.labels = datos.map(item => item.juego);
+            lienzo.data.datasets[0].data = datos.map(item => item.votos);
+            lienzo.update();
+            juego.value="";
+        });
+    </script>
+</body>
+</html>

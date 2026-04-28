@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej 20 reapso</title>
+</head>
+<body>
+    <h1>Valoraciobnes</h1>
+    <form id="formu">
+    Usuario <input id="usuario" type="text"><br><br>
+    Puntuación: <input id="nota" type="number" min="1"max="5"><br><br>
+    Comentario: <input id="comentario" type="text" minlength="5">
+    <input type="submit">
+    </form>
+
+    <p id="media"></p>
+
+   <ul id="lista"></ul>
+    <script>
+        const formu= document.getElementById("formu");
+        const usuario= document.getElementById("usuario");
+        const nota= document.getElementById("nota");
+        const comentario= document.getElementById("comentario");
+        const media= document.getElementById("media");
+        const lista= document.getElementById("lista");
+
+        let datos = JSON.parse(localStorage.getItem("valoraciones3")) || [];
+
+        function mostrarLista(){
+            lista.innerHTML ="";
+            let suma = 0;
+            for(let i=0;i<datos.length;i++){
+                let listado = document.createElement("li");
+                listado.textContent = datos[i].usuario +" : "+ datos[i].nota+" : "+ datos[i].comentario;
+                suma+= datos[i].nota;
+                lista.appendChild(listado);
+            }
+            media.textContent = "Media: "+ suma / datos.length;
+        }
+
+        mostrarLista();
+
+        formu.addEventListener("submit", function(evento){
+            evento.preventDefault();
+            let nuevoObjeto = {usuario: usuario.value, nota: Number(nota.value), comentario:comentario.value};
+            datos.push(nuevoObjeto);
+            localStorage.setItem("valoraciones3", JSON.stringify(datos));
+            mostrarLista();
+            usuario.value="";
+            nota.value="";
+            comentario.value="";
+        });
+    </script>
+</body>
+</html>
