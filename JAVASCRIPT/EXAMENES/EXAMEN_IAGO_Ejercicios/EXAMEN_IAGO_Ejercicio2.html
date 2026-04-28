@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ej 2</title>
+</head>
+<body>
+    <form id="formu">
+        Nombre: <input type="text" id="nombre" minlength="3"><br><br>
+        Edad: <input type="number" id="edad" min="18" max="99"><br><br>
+        Email: <input type="email" id="gmail"><br><br>
+        <input type="reset">
+        <input type="submit">
+    </form>
+
+    <table id="tabla">
+        <tr>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Email</th>
+        </tr>
+    </table>
+
+    <script>
+        const formu = document.getElementById("formu");
+        const nombre = document.getElementById("nombre");
+        const edad = document.getElementById("edad");
+        const gmail = document.getElementById("gmail");
+        const tabla = document.getElementById("tabla");
+
+        let datos = JSON.parse(localStorage.getItem("usuarios1")) || [];
+
+        function mostrarTabla(){
+            tabla.innerHTML = `<tr>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Email</th>
+            </tr>`;
+
+            for(let i=0;i<datos.length;i++){
+            let fila = document.createElement("tr");
+            let cNombre = document.createElement("td");
+            let cEdad = document.createElement("td");
+            let cGmail = document.createElement("td");
+
+            cNombre.textContent = datos[i].nombre;
+            cEdad.textContent = datos[i].edad;
+            cGmail.textContent = datos[i].gmail;
+
+            fila.appendChild(cNombre);
+            fila.appendChild(cEdad);
+            fila.appendChild(cGmail);
+
+            tabla.appendChild(fila);
+            }   
+        }
+
+        mostrarTabla();
+
+        formu.addEventListener("submit",function(evento){
+            evento.preventDefault();
+            let nuevoObjeto = {nombre: nombre.value, edad: Number(edad.value), gmail: gmail.value};
+            datos.push(nuevoObjeto);
+            localStorage.setItem("usuarios1", JSON.stringify(datos));
+            mostrarTabla();
+            nombre.value="";
+            edad.value="";
+            gmail.value="";
+        });
+
+        formu.addEventListener("reset",function(evento){
+            evento.preventDefault();
+            alert("Formulario reiniciado");
+        });
+    </script>
+</body>
+</html>

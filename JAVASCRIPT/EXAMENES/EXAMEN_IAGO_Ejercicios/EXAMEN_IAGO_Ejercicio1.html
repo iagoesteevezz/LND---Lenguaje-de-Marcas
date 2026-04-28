@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Iago</title>
+    <style>
+        #caja {
+            background-color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="texto">
+    <div id="caja">
+        <h2>Estás en la caja</h2>
+        <p id="cords"></p>
+    </div>
+    <p id="mensaje1"></p>
+    <p id="mensaje2"></p>
+    <p id="mensaje3"></p>
+    
+    
+
+    <script>
+        let texto = document.getElementById("texto");
+        let caja = document.getElementById("caja");
+        let mensaje1 = document.getElementById("mensaje1");
+        let mensaje2 = document.getElementById("mensaje2");
+        let mensaje3 = document.getElementById("mensaje3");
+        let cords = document.getElementById("cords");
+
+        //a
+        texto.addEventListener("keydown", function(){
+            mensaje1.textContent = "Número de caracteres: "+texto.value.length;
+        });
+
+        texto.addEventListener("keydown", function(){
+            if(texto.value.length == 0){
+            mensaje2.textContent = "Campo vacio";
+            }
+            else{
+                mensaje2.textContent = "";
+            }
+        });
+
+        texto.addEventListener("keypress", function(e){
+            if(e.key === "Enter"){
+            mensaje3.textContent = "Texto enviado";
+            };
+        });
+        //b
+        caja.addEventListener("mouseover", function(e){
+            cords.textContent = e.clientX + ":"+ e.clientY;
+        });
+
+        //c
+        window.addEventListener("resize", function(e){
+            e.preventDefault();
+            alert("Página reajustada ahora mide "+ innerWidth + " y " + innerHeight);
+        });
+
+    </script>
+</body>
+</html>
